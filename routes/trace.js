@@ -1,7 +1,7 @@
-const OpenTelemetry = require("@OpenTelemetry/api");
+const OpenTelemetry = require("@opentelemetry/api");
 
 // This propogates the traceId / spans from the upstream proxy (envoy)
-const { B3Propagator } = require('@OpenTelemetry/propagator-b3');
+const { B3Propagator } = require('@opentelemetry/propagator-b3');
 OpenTelemetry.propagation.setGlobalPropagator(new B3Propagator());
 
 var express = require('express');

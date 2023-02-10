@@ -12,7 +12,7 @@ RUN npm install
 # If you are building your code for production
 # RUN npm ci --only=production
 
-COPY . .
+COPY . /usr/src/app
 
 ENV OTEL_TRACE_URL='http://localhost:14268/api/traces'
 ENV OTEL_PROVIDER='jaeger'

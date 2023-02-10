@@ -1,6 +1,7 @@
 const OpenTelemetry = require("@OpenTelemetry/api");
-const { B3Propagator } = require('@OpenTelemetry/propagator-b3');
 
+// This propogates the traceId / spans from the upstream proxy (envoy)
+const { B3Propagator } = require('@OpenTelemetry/propagator-b3');
 OpenTelemetry.propagation.setGlobalPropagator(new B3Propagator());
 
 var express = require('express');
@@ -24,10 +25,11 @@ router.get('/', function(req, res, next) {
 
   console.log(`trace route - log trace_id:”${trace_id}” span_id:”${span_id}” trace_flags:”${trace_flags}”`);
 
+  // Adds an event to the span
   activeSpan.addEvent('/trace called', { randomIndex: 1 });
 
-  // Send a response
-  res.send('respond with a resource');
+  // Send a response with the trace id
+  res.send(`TraceId: ${trace_id}, SpanId: ${span_id}`);
 });
 
 module.exports = router;

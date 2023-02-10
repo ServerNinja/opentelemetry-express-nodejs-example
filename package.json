@@ -1,0 +1,36 @@
+{
+  "name": "app-express-opentelemetry",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "start-dev": "nodemon ./bin/www"
+  },
+  "dependencies": {
+    "@opentelemetry/node": "^0.24.0",
+    "@opentelemetry/propagator-b3": "^1.9.1",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "pug": "2.0.0-beta11"
+  },
+  "devDependencies": {
+    "@opentelemetry/api": "^1.4.0",
+    "@opentelemetry/auto-instrumentations-node": "^0.36.1",
+    "@opentelemetry/exporter-collector": "^0.25.0",
+    "@opentelemetry/exporter-jaeger": "^1.9.1",
+    "@opentelemetry/instrumentation": "^0.35.1",
+    "@opentelemetry/plugin-express": "^0.15.0",
+    "@opentelemetry/plugin-http": "^0.18.2",
+    "@opentelemetry/propagator-ot-trace": "^0.26.2",
+    "@opentelemetry/resources": "^1.9.1",
+    "@opentelemetry/sdk-node": "^0.35.1",
+    "@opentelemetry/sdk-trace-base": "^1.9.1",
+    "@opentelemetry/sdk-trace-node": "^1.9.1",
+    "@opentelemetry/semantic-conventions": "^1.9.1",
+    "@opentelemetry/tracing": "^0.24.0",
+    "express-live-reloading": "^1.0.1"
+  }
+}

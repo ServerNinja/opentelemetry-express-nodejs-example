@@ -1,0 +1,14 @@
+---
+apiVersion: getambassador.io/v2
+kind: Host
+metadata:
+  name: wildcard.app-express-opentelemetry.trinity.dev.bluescape.io
+  annotations:
+    external-dns.ambassador-service: edge-stack.edge-stack
+  namespace: app-express-opentelemetry
+spec:
+  ambassador_id: 
+  - default 
+  acmeProvider:
+    authority: none
+  hostname: "*.app-express-opentelemetry.trinity.dev.bluescape.io"

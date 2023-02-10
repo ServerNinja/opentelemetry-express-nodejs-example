@@ -1,0 +1,15 @@
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  labels:
+    name: app-express-opentelemetry.trinity.dev.bluescape.io
+  name: app-express-opentelemetry.trinity.dev.bluescape.io
+  namespace: app-express-opentelemetry
+spec:
+  dnsNames:
+  - hello-world.app-express-opentelemetry.trinity.dev.bluescape.io
+  issuerRef:
+    kind: ClusterIssuer
+    name: letsencrypt-prod-dns
+  secretName: ssl-certificate

@@ -1,0 +1,28 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "app-metrics-telemetry-tester.fullname" . }}
+  labels:
+    {{- include "app-metrics-telemetry-tester.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "app-metrics-telemetry-tester.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: "{{ .Values.service.port }}"
+      path: {{ .Values.serviceMonitor.path | default "/metrics" }}
+      interval: {{ .Values.serviceMonitor.interval | default "30s" }}
+      scheme: {{ .Values.serviceMonitor.scheme | default "http" }}
+      {{- if .Values.serviceMonitor.bearerTokenSecret }}
+      bearerTokenSecret:
+        name: {{ .Values.serviceMonitor.bearerTokenSecret }}
+      {{- end }}
+      {{- if .Values.serviceMonitor.tlsConfig }}
+      tlsConfig:
+        {{- toYaml .Values.serviceMonitor.tlsConfig | nindent 8 }}
+      {{- end }}
+  namespaceSelector:
+    matchNames:
+      - {{ .Release.Namespace }}
+{{- end }}

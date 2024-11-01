@@ -24,7 +24,7 @@ docker run -p 3000:3000 -it serverninja/app-metrics-telemetry-tester
 
 ### URLs
 - http://localhost:3000 - This will show a basic page that pretty much does nothing
-- http://localhost:3000/trace - This will invoke a trace with the node.js openTelemetry modules. The trace will be exposed on port 14268 and will also be logged to STDOUT. You will see the trace ID on the page
+- http://localhost:3000/trace - This will invoke a trace with the node.js openTelemetry modules. The trace will be sent to the url configured in the `OTEL_TRACE_URL` environment variable. The traceId will also be logged to STDOUT. You will see the traceId on the page. Each time you refresh this page, you will generate a new traceId.
 - http://localhost:3000/metrics - This is a route for basic prometheus metrics for the node.js express app
 
 ## Building with docker
@@ -48,3 +48,9 @@ podman manifest push $IMAGE_NAME
 # Clean up manifest
 podman manifest rm $IMAGE_NAME
 ```
+
+# Installing via helm chart:
+
+Chart located in /helm directory
+
+For more information, [ckick here](./helm/README.md).

@@ -17,6 +17,16 @@ Metrics URL: http://localhost:3000/metrics
 
 ```
 
+### Running docker container
+```
+docker run -p 3000:3000 -it serverninja/app-metrics-telemetry-tester
+```
+
+### URLs
+- http://localhost:3000 - This will show a basic page that pretty much does nothing
+- http://localhost:3000/trace - This will invoke a trace with the node.js openTelemetry modules. The trace will be exposed on port 14268 and will also be logged to STDOUT. You will see the trace ID on the page
+- http://localhost:3000/metrics - This is a route for basic prometheus metrics for the node.js express app
+
 ## Building with docker
 ```
 docker build -t serverninja/app-metrics-telemetry-tester .

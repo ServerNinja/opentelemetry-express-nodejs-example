@@ -29,6 +29,10 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+console.log("Listening http port: " + port);
+console.log("Trace URL: http://localhost:" + port + "/trace");
+console.log("Metrics URL: http://localhost:" + port + "/metrics");
+
 /**
  * Normalize a port into a number, string, or false.
  */

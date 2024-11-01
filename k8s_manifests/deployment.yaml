@@ -50,7 +50,7 @@ spec:
           value: http://opentelemetry-collector.opentelemetry.svc.cluster.local:4318/v1/traces
         - name: OTEL_PROVIDER
           value: otlp
-        image: serverninja/app-otlp:latest
+        image: serverninja/app-metrics-telemetry-tester:latest
         imagePullPolicy: Always
         ports:
         - name: http

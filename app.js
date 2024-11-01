@@ -7,6 +7,21 @@ var logger = require('morgan');
 var indexRouter = require('./routes/index');
 var traceRouter = require('./routes/trace');
 
+const promBundle = require("express-prom-bundle");
+
+// Add the options to the prometheus middleware most option are for http_request_duration_seconds histogram metric
+const metricsMiddleware = promBundle({
+    includeMethod: true, 
+    includePath: true, 
+    includeStatusCode: true, 
+    includeUp: true,
+    customLabels: {project_name: 'metrics-telemetry-tester', project_type: 'node.js'},
+    promClient: {
+        collectDefaultMetrics: {
+        }
+      }
+});
+
 // OpenTelemetry Tracing
 const { init } = require('./tracer')
 const api = require('@opentelemetry/api')
@@ -25,6 +40,9 @@ liveReload.static(
 
 app.use(liveReload);
 */
+
+// add the prometheus middleware to all routes
+app.use(metricsMiddleware)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
